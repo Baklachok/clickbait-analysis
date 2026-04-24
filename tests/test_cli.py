@@ -25,12 +25,15 @@ def test_main_prints_clickbait_report_for_example_files(
     exit_code = main(["--files", "stats1.csv", "stats2.csv", "--report", "clickbait"])
 
     captured = capsys.readouterr()
+    output_lines = captured.out.strip().splitlines()
 
     assert exit_code == 0
     assert captured.err == ""
-    assert "title" in captured.out
-    assert "ctr" in captured.out
-    assert "retention_rate" in captured.out
+    assert output_lines[0].startswith("| title")
+    assert output_lines[1].startswith("|-")
+    assert "title" in output_lines[0]
+    assert "ctr" in output_lines[0]
+    assert "retention_rate" in output_lines[0]
     assert "25.0" in captured.out
     assert "17.0" in captured.out
     assert "Почему сеньоры не носят галстуки" not in captured.out
@@ -101,4 +104,7 @@ def test_main_prints_empty_table_when_no_rows_match(
     assert exit_code == 0
     assert captured.err == ""
     assert "Нормальное видео" not in captured.out
-    assert output_lines[0].split() == ["title", "ctr", "retention_rate"]
+    assert len(output_lines) == 2
+    assert output_lines[0].startswith("| title")
+    assert output_lines[1].startswith("|-")
+    assert "retention_rate" in output_lines[0]

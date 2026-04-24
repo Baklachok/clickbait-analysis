@@ -11,7 +11,7 @@ def render_report_table(
         tabulate(
             rows,
             headers=headers,
-            tablefmt="simple",
+            tablefmt="github",
             disable_numparse=True,
         )
     )
