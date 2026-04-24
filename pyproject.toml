@@ -1,0 +1,31 @@
+[project]
+name = "clickbaitanalysis"
+version = "0.1.0"
+description = "CLI tool for analyzing clickbait YouTube videos from CSV metrics."
+authors = [
+    {name = "Daniil Korobko",email = "korobkodaniil396@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "tabulate>=0.9,<1.0",
+]
+
+[project.scripts]
+clickbaitanalysis = "clickbaitanalysis.cli:main"
+
+[tool.poetry]
+packages = [
+    { include = "clickbaitanalysis", from = "src" }
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0,<9.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
