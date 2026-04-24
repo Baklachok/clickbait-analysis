@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .reader import read_video_metrics_from_files
 from .renderer import render_report_table
-from .report_registry import available_reports, get_report
+from .reports import available_reports, get_report
 
 
 class CliError(Exception):
