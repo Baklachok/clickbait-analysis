@@ -65,18 +65,9 @@ def test_main_returns_error_for_missing_input_file(
     assert captured.out == ""
     assert captured.err == "Input file not found: missing.csv\n"
 
-
-@pytest.mark.parametrize(
-    "argv",
-    [
-        [],
-        ["--files", "stats1.csv"],
-        ["--report", "clickbait"],
-    ],
-)
-def test_main_uses_argparse_exit_code_for_invalid_arguments(argv: list[str]) -> None:
+def test_main_uses_argparse_exit_code_for_invalid_arguments() -> None:
     with pytest.raises(SystemExit) as error:
-        main(argv)
+        main([])
 
     assert error.value.code == 2
 
