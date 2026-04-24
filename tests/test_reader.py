@@ -9,10 +9,8 @@ def test_read_video_metrics_parses_text_and_numeric_fields() -> None:
     first_record = records[0]
 
     assert first_record.title == "Я бросил IT и стал фермером"
-    assert first_record.ctr_text == "18.2"
-    assert first_record.retention_rate_text == "35"
-    assert first_record.ctr_value == 18.2
-    assert first_record.retention_rate_value == 35.0
+    assert first_record.ctr == 18.2
+    assert first_record.retention_rate == 35.0
 
 
 def test_read_video_metrics_from_files_preserves_file_order() -> None:

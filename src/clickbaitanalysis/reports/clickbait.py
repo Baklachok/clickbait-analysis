@@ -14,13 +14,13 @@ class ClickbaitReport:
             (
                 record
                 for record in records
-                if record.ctr_value > 15 and record.retention_rate_value < 40
+                if record.ctr > 15 and record.retention_rate < 40
             ),
-            key=lambda record: record.ctr_value,
+            key=lambda record: record.ctr,
             reverse=True,
         )
         return [
-            (record.title, record.ctr_text, record.retention_rate_text)
+            (record.title, f"{record.ctr:.1f}", f"{record.retention_rate:g}")
             for record in filtered_records
         ]
 
