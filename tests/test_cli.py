@@ -4,7 +4,6 @@ import pytest
 
 from clickbaitanalysis.cli import main
 
-
 EXPECTED_TITLES = [
     "Секрет который скрывают тимлиды",
     "Почему продакшн упал в пятницу вечером",
@@ -20,7 +19,9 @@ EXPECTED_TITLES = [
 ]
 
 
-def test_main_prints_clickbait_report_for_example_files(capsys: pytest.CaptureFixture[str]) -> None:
+def test_main_prints_clickbait_report_for_example_files(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
     exit_code = main(["--files", "stats1.csv", "stats2.csv", "--report", "clickbait"])
 
     captured = capsys.readouterr()
@@ -38,7 +39,9 @@ def test_main_prints_clickbait_report_for_example_files(capsys: pytest.CaptureFi
     assert positions == sorted(positions)
 
 
-def test_main_returns_error_for_unknown_report(capsys: pytest.CaptureFixture[str]) -> None:
+def test_main_returns_error_for_unknown_report(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
     exit_code = main(["--files", "stats1.csv", "--report", "unknown"])
 
     captured = capsys.readouterr()
@@ -48,7 +51,9 @@ def test_main_returns_error_for_unknown_report(capsys: pytest.CaptureFixture[str
     assert captured.err == "Unknown report 'unknown'. Available reports: clickbait\n"
 
 
-def test_main_returns_error_for_missing_input_file(capsys: pytest.CaptureFixture[str]) -> None:
+def test_main_returns_error_for_missing_input_file(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
     exit_code = main(["--files", "missing.csv", "--report", "clickbait"])
 
     captured = capsys.readouterr()

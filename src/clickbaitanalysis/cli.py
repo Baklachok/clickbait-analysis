@@ -36,7 +36,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         report = get_report(args.report)
         if report is None:
             available = ", ".join(available_reports())
-            raise CliError(f"Unknown report '{args.report}'. Available reports: {available}")
+            raise CliError(
+                f"Unknown report '{args.report}'. Available reports: {available}"
+            )
 
         file_paths = _validate_input_files(args.files)
         records = read_video_metrics_from_files(file_paths)

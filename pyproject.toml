@@ -20,10 +20,29 @@ packages = [
 ]
 
 [tool.poetry.group.dev.dependencies]
+mypy = ">=1.10,<2.0"
 pytest = ">=8.0,<9.0"
+ruff = ">=0.11,<1.0"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+files = ["src"]
+mypy_path = "src"
+python_version = "3.12"
+strict = true
+
+[[tool.mypy.overrides]]
+module = ["tabulate"]
+ignore_missing_imports = true
 
 
 [build-system]

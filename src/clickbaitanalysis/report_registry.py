@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import Protocol
+from typing import Protocol, cast
 
 from .models import VideoMetric
 from .reports.clickbait import REPORT as CLICKBAIT_REPORT
@@ -14,7 +14,7 @@ class Report(Protocol):
 
 
 _REPORTS: dict[str, Report] = {
-    CLICKBAIT_REPORT.name: CLICKBAIT_REPORT,
+    CLICKBAIT_REPORT.name: cast(Report, CLICKBAIT_REPORT),
 }
 
 
